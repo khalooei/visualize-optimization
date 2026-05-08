@@ -127,19 +127,40 @@
 
         <div class="legend-strip" id="legend-strip" aria-hidden="false">
           <span class="legend-item"><span class="legend-swatch surface"></span><span data-i18n="legend_surface">سطح f(x,y)</span></span>
-          <span class="legend-item"><span class="legend-swatch hc"></span><span data-i18n="legend_hc">مسیر تپه نوردی</span></span>
+          <span class="legend-item"><span class="legend-swatch hc"></span><span data-i18n="legend_hc">مسیر بالاروی تپ</span></span>
           <span class="legend-item"><span class="legend-swatch rs"></span><span data-i18n="legend_rs">جستجوی تصادفی</span></span>
           <span class="legend-item"><span class="legend-swatch global"></span><span data-i18n="legend_global">کمینهٔ سراسری</span></span>
           <span class="legend-item"><span class="legend-swatch local"></span><span data-i18n="legend_local">کمینهٔ محلی (نمونه)</span></span>
         </div>
       </section>
 
-      <section class="chart-card">
-        <header>
-          <h2 data-i18n="chart_title">منظرهٔ سه‌بعدی و مسیرها</h2>
-          <p class="chart-hint" data-i18n="chart_hint"></p>
-        </header>
-        <div id="plot-3d" class="plot-3d"></div>
+      <section class="chart-card chart-card-wide">
+        <p class="chart-pair-lead muted small" data-i18n="chart_pair_lead"></p>
+        <span id="split-gutter-help" class="visually-hidden" data-i18n="gutter_help"></span>
+        <div class="charts-split" id="charts-split" aria-label="Split charts">
+          <div class="chart-pane chart-pane-3d">
+            <header>
+              <h2 data-i18n="chart_title_3d">منظرهٔ سه‌بعدی</h2>
+              <p class="chart-hint" data-i18n="chart_hint_3d"></p>
+            </header>
+            <div id="plot-3d" class="plot-pane-inner plot-3d"></div>
+          </div>
+          <div
+            class="split-gutter"
+            id="split-gutter"
+            role="separator"
+            aria-orientation="vertical"
+            aria-describedby="split-gutter-help"
+            tabindex="0"
+          ></div>
+          <div class="chart-pane chart-pane-2d">
+            <header>
+              <h2 data-i18n="chart_title_2d">منظرهٔ دوبعدی (از بالا)</h2>
+              <p class="chart-hint" data-i18n="chart_hint_2d"></p>
+            </header>
+            <div id="plot-2d" class="plot-pane-inner plot-2d"></div>
+          </div>
+        </div>
       </section>
     </main>
 

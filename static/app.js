@@ -69,11 +69,11 @@ const LANDSCAPES = {
 
 const I18N = {
   fa: {
-    title: "بهینه‌سازی تعاملی در ۳ بعد — تبه نوردی در مقابل جستجوی تصادفی",
-    subtitle: "منظرهٔ هزینه، کمینهٔ سراسری و کمینه‌های محلی، مسیرهای قابل چرخش و زوم",
+    title: "بهینه‌سازی تعاملی در ۳ بعد — بالاروی تپ در مقابل جستجوی تصادفی",
+    subtitle: "منظرهٔ هزینه، کمینهٔ سراسری و محلی؛ نمای سه‌بعدی و نقشهٔ دوبعدی هم‌زمان",
     intro_title: "ایدهٔ آموزشی",
     intro_p1:
-      "در کمینه‌سازی، «کمینهٔ سراسری» بهترین مقدار در کل دامنه است؛ «کمینهٔ محلی» فقط از نظر همسایگی بهتر است. تبه نوردی (HC) فقط بهبودهای محلی می‌پذیرد؛ بنابراین اغلب در چاله‌های کم‌عمق گیر می‌کند. جستجوی تصادفی (RS) نمونه‌ها را در کل دامنه می‌پاشد و گاهی چالهٔ عمیق‌تر را می‌یابد — هرچه بودجهٔ نمونه بیشتر شود، شانس یافتن سراسری بهتر می‌شود.",
+      "در کمینه‌سازی، «کمینهٔ سراسری» بهترین مقدار در کل دامنه است؛ «کمینهٔ محلی» فقط از نظر همسایگی بهتر است. بالاروی تپ (HC) فقط بهبودهای محلی می‌پذیرد؛ بنابراین اغلب در چاله‌های کم‌عمق گیر می‌کند. جستجوی تصادفی (RS) نمونه‌ها را در کل دامنه می‌پاشد و گاهی چالهٔ عمیق‌تر را می‌یابد — هرچه بودجهٔ نمونه بیشتر شود، شانس یافتن سراسری بهتر می‌شود.",
     bullet_hc: "HC: از نقطهٔ شروع، فقط اگر نقطهٔ جدید هزینه را کاهش دهد حرکت می‌کند؛ مسیر پیوسته و حریص است.",
     bullet_rs: "RS: نمونه‌های مستقل در دامنه؛ بهترین نمونه گزارش می‌شود — بدون حریص بودن محلی.",
     bullet_local: "کمینهٔ محلی: اطرافش را بالا بروید هزینه بدتر می‌شود؛ اما جای بهتری در جای دیگر دامنه وجود دارد.",
@@ -90,7 +90,7 @@ const I18N = {
     label_seed: "بذرهٔ تصادفی",
     label_start_x: "شروع x₀",
     label_start_y: "شروع y₀",
-    label_hc_mode: "حالت تبه نوردی",
+    label_hc_mode: "حالت بالاروی تپ",
     hc_mode_random: "گام تصادفی در شعاع",
     hc_mode_neighbors: "۸ همسایهٔ شبکه‌ای",
     label_hc_steps: "حداکثر گام HC",
@@ -101,10 +101,16 @@ const I18N = {
     btn_run: "اجرای مقایسه",
     btn_animate_hc: "پخش تدریجی مسیر HC",
     btn_stop: "توقف",
-    btn_reset_view: "بازنشانی زاویهٔ دوربین",
-    chart_title: "منظرهٔ سه‌بعدی f(x, y)",
-    chart_hint:
-      "با ماوس بچرخانید و زوم کنید. مسیر آبی: HC؛ بنفش: RS؛ ستاره: کمینهٔ سراسری؛ ضربدر: کمینهٔ محلی نمونه (در منظرهٔ دوچاله).",
+    btn_reset_view: "بازنشانی نما (۳بعدی و محورهای ۲بعدی)",
+    chart_pair_lead:
+      "چیدمان از چپ به راست: سه‌بعدی، سپس دوبعدی. نوار باریک وسط را بکشید تا یک پنجره بزرگ‌تر شود — برای تمرکز روی شکل فضایی یا روی نقشهٔ تراز.",
+    chart_title_3d: "سطح سه‌بعدی f(x, y)",
+    chart_hint_3d:
+      "بچرخانید و زوم کنید. رنگ‌ها همان f است. سیان: مسیر HC؛ بنفش: RS؛ ستاره: کمینهٔ سراسری؛ ضربدر: کمینهٔ محلی (دوچاله).",
+    chart_title_2d: "نقشهٔ تراز (کانتور) روی صفحهٔ (x, y)",
+    chart_hint_2d:
+      "همان دامنه و همان نمادها، از بالا: چاله‌ها و مسیر HC روی خطوط تراز دیده می‌شود. محورها با مقیاس یکسان‌اند تا فاصله در دامنه درست باشد.",
+    gutter_help: "کشیدن نوار وسط برای تغییر نسبت عرض نمودار سه‌بعدی و دوبعدی",
     metric_hc_final: "بهترین مقدار HC",
     metric_rs_best: "بهترین مقدار RS",
     metric_global_ref: "مقدار در کمینهٔ سراسری (مرجع)",
@@ -123,7 +129,7 @@ const I18N = {
   },
   en: {
     title: "Interactive 3D optimization — hill climbing vs random search",
-    subtitle: "Loss landscapes, global vs local minima, orbit and zoom in your browser",
+    subtitle: "3D surface plus 2D contour map — same data, clearer basins and paths",
     intro_title: "Teaching idea",
     intro_p1:
       "In minimization, a global minimum is the best value over the entire domain; a local minimum is only best in a neighborhood. Hill climbing (HC) accepts only improving moves, so it often gets trapped in a shallow basin. Random search (RS) draws independent samples across the domain and keeps the best — with more samples, the chance of finding a deeper (often global) basin improves.",
@@ -154,9 +160,16 @@ const I18N = {
     btn_run: "Run comparison",
     btn_animate_hc: "Animate HC path",
     btn_stop: "Stop",
-    btn_reset_view: "Reset camera",
-    chart_title: "3D surface f(x, y)",
-    chart_hint: "Drag to orbit, scroll to zoom. Cyan: HC path; purple: RS samples; star: global minimum; crosses: sample local minima (double well).",
+    btn_reset_view: "Reset 3D camera & 2D axes",
+    chart_pair_lead:
+      "Layout is left-to-right: 3D then 2D. Drag the narrow bar between panes to resize — focus on the surface shape or the contour map.",
+    chart_title_3d: "3D surface f(x, y)",
+    chart_hint_3d:
+      "Drag to orbit, scroll to zoom. Colors encode f. Cyan: HC path; purple: RS; star: global minimum; crosses: local minimum (double well).",
+    chart_title_2d: "Contour map (top-down)",
+    chart_hint_2d:
+      "Same domain and markers as 3D, from above: basins and the HC path on level sets. Axes use a 1:1 scale so distances in the domain are true.",
+    gutter_help: "Drag the middle bar to resize the 3D vs 2D pane widths",
     metric_hc_final: "Best HC value",
     metric_rs_best: "Best RS value",
     metric_global_ref: "Value at global min (ref)",
@@ -206,10 +219,16 @@ const I18N = {
     btn_run: "تشغيل المقارنة",
     btn_animate_hc: "تشغيل مسار HC",
     btn_stop: "إيقاف",
-    btn_reset_view: "إعادة ضبط الكاميرا",
-    chart_title: "سطح ثلاثي f(x, y)",
-    chart_hint:
-      "اسحب للدوران. أزرق سماوي: HC؛ بنفسجي: RS؛ نجمة: الحد الأدنى العام؛ صليب: حد أدنى محلي تجريبي (البئر المزدوج).",
+    btn_reset_view: "إعادة ضبط الكاميرا والمحاور ثنائية البعد",
+    chart_pair_lead:
+      "من اليسار إلى اليمين: ثلاثي الأبعاد ثم ثنائي. اسحب الشريط الوسطي لتغيير حجم اللوحتين.",
+    chart_title_3d: "سطح ثلاثي f(x, y)",
+    chart_hint_3d:
+      "اسحب للدوران والتكبير. الألوان تمثل f. سماوي: HC؛ بنفسجي: RS؛ نجمة: الحد العام؛ صليب: حد محلي (البئر المزدوج).",
+    chart_title_2d: "خريطة كنتور من الأعلى",
+    chart_hint_2d:
+      "نفس المجال والرموز: الحفر ومسار HC على خطوط التساوي. المحاور بنسبة 1:1 لمسافات صحيحة.",
+    gutter_help: "اسحب الشريط الوسطي لتغيير عرض اللوحتين",
     metric_hc_final: "أفضل قيمة HC",
     metric_rs_best: "أفضل قيمة RS",
     metric_global_ref: "القيمة عند الحد العام (مرجع)",
@@ -235,7 +254,93 @@ let lastRsBest = null;
 let lastGlobalZ = 0;
 let animTimer = null;
 let animating = false;
-let plotInitialized = false;
+let plot3dInitialized = false;
+let plot2dInitialized = false;
+
+const SPLIT_KEY = "vizopt-split-ratio";
+let splitRatio = 0.5;
+try {
+  const s = parseFloat(localStorage.getItem(SPLIT_KEY));
+  if (!Number.isNaN(s) && s >= 0.22 && s <= 0.78) splitRatio = s;
+} catch (_) {}
+
+function applySplitLayout() {
+  const wrap = document.getElementById("charts-split");
+  if (!wrap) return;
+  if (window.matchMedia("(max-width: 960px)").matches) {
+    wrap.style.gridTemplateColumns = "";
+    return;
+  }
+  wrap.style.gridTemplateColumns = `${splitRatio}fr 12px ${1 - splitRatio}fr`;
+}
+
+function resizePlots() {
+  const e3 = document.getElementById("plot-3d");
+  const e2 = document.getElementById("plot-2d");
+  if (plot3dInitialized && e3) Plotly.Plots.resize(e3);
+  if (plot2dInitialized && e2) Plotly.Plots.resize(e2);
+}
+
+function initSplitGutter() {
+  const gutter = document.getElementById("split-gutter");
+  const wrap = document.getElementById("charts-split");
+  if (!gutter || !wrap) return;
+
+  let capPid = null;
+
+  const onPointerMove = (ev) => {
+    const r = wrap.getBoundingClientRect();
+    const total = r.width - 12;
+    if (total <= 0) return;
+    const x = ev.clientX - r.left;
+    splitRatio = clamp(x / total, 0.22, 0.78);
+    applySplitLayout();
+    resizePlots();
+  };
+
+  const endDrag = () => {
+    if (capPid != null) {
+      try {
+        gutter.releasePointerCapture(capPid);
+      } catch (_) {}
+      capPid = null;
+    }
+    gutter.removeEventListener("pointermove", onPointerMove);
+    gutter.removeEventListener("pointerup", endDrag);
+    gutter.removeEventListener("pointercancel", endDrag);
+    try {
+      localStorage.setItem(SPLIT_KEY, String(splitRatio));
+    } catch (_) {}
+  };
+
+  gutter.addEventListener("pointerdown", (e) => {
+    if (window.matchMedia("(max-width: 960px)").matches) return;
+    e.preventDefault();
+    capPid = e.pointerId;
+    gutter.setPointerCapture(capPid);
+    gutter.addEventListener("pointermove", onPointerMove);
+    gutter.addEventListener("pointerup", endDrag);
+    gutter.addEventListener("pointercancel", endDrag);
+  });
+}
+
+function renderBothPlots(hcPathSlice) {
+  const meta = land();
+  const p3 = buildPlot(hcPathSlice, lastRsPoints, lastRsBest, meta);
+  const p2 = buildPlot2D(hcPathSlice, lastRsPoints, lastRsBest, meta);
+  const el3 = document.getElementById("plot-3d");
+  const el2 = document.getElementById("plot-2d");
+  if (plot3dInitialized) Plotly.react(el3, p3.traces, p3.layout, p3.config);
+  else {
+    Plotly.newPlot(el3, p3.traces, p3.layout, p3.config);
+    plot3dInitialized = true;
+  }
+  if (plot2dInitialized) Plotly.react(el2, p2.traces, p2.layout, p2.config);
+  else {
+    Plotly.newPlot(el2, p2.traces, p2.layout, p2.config);
+    plot2dInitialized = true;
+  }
+}
 
 function currentLandId() {
   return document.getElementById("select-landscape").value;
@@ -552,6 +657,188 @@ function buildPlot(hcPathSlice, rsPoints, rsBest, meta) {
   return { traces, layout, config: { responsive: true, displayModeBar: true, displaylogo: false } };
 }
 
+function buildPlot2D(hcPathSlice, rsPoints, rsBest, meta) {
+  const theme = getChartTheme();
+  const light = document.documentElement.getAttribute("data-theme") === "light";
+  const { xs, ys, Z } = buildSurfaceGrid(meta);
+  const lbl = traceLabels();
+  const colorscale = light
+    ? [
+        [0, "#f8fafc"],
+        [0.2, "#bae6fd"],
+        [0.45, "#38bdf8"],
+        [0.7, "#0e7490"],
+        [1, "#164e63"],
+      ]
+    : [
+        [0, "#0c1220"],
+        [0.25, "#1e3a5f"],
+        [0.5, "#155e75"],
+        [0.72, "#0d9488"],
+        [0.88, "#5eead4"],
+        [1, "#fef3c7"],
+      ];
+
+  const traces = [
+    {
+      type: "contour",
+      x: xs,
+      y: ys,
+      z: Z,
+      colorscale,
+      contours: { coloring: "fill", showlines: true },
+      line: { width: 0.55, color: light ? "rgba(15,23,42,0.14)" : "rgba(255,255,255,0.12)" },
+      showscale: true,
+      colorbar: {
+        title: "f",
+        thickness: 11,
+        len: 0.55,
+        tickfont: { size: 9 },
+        titlefont: { size: 10 },
+      },
+      name: lbl.surf,
+      showlegend: false,
+      hovertemplate: "x=%{x:.4f}<br>y=%{y:.4f}<br>f=%{z:.5f}<extra></extra>",
+    },
+  ];
+
+  const hcShow = hcPathSlice && hcPathSlice.length > 0;
+  if (hcShow && hcPathSlice.length > 1) {
+    traces.push({
+      type: "scatter",
+      mode: "lines",
+      x: hcPathSlice.map((p) => p.x),
+      y: hcPathSlice.map((p) => p.y),
+      name: lbl.hc,
+      line: { color: light ? "#0369a1" : "#38bdf8", width: 3.2 },
+      showlegend: false,
+      hovertemplate: "HC<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>",
+    });
+  }
+  if (hcShow) {
+    const last = hcPathSlice[hcPathSlice.length - 1];
+    traces.push({
+      type: "scatter",
+      mode: "markers",
+      x: [last.x],
+      y: [last.y],
+      name: lang === "fa" ? "پایان HC" : lang === "ar" ? "نهاية HC" : "HC end",
+      marker: { size: 11, color: light ? "#0284c7" : "#7dd3fc", line: { width: 1.5, color: "#fff" } },
+      showlegend: false,
+      hovertemplate: "HC end<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>",
+    });
+  }
+
+  const showAll = document.getElementById("chk-show-all-rs").checked;
+  if (rsPoints && rsPoints.length && showAll) {
+    traces.push({
+      type: "scatter",
+      mode: "markers",
+      x: rsPoints.map((p) => p.x),
+      y: rsPoints.map((p) => p.y),
+      text: rsPoints.map((p) => p.z.toFixed(5)),
+      name: lbl.rs,
+      marker: {
+        size: 4,
+        color: light ? "rgba(124,58,237,0.65)" : "rgba(192,132,252,0.55)",
+        line: { width: 0 },
+      },
+      showlegend: false,
+      hovertemplate: "RS<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=%{text}<extra></extra>",
+    });
+  }
+
+  if (rsBest) {
+    traces.push({
+      type: "scatter",
+      mode: "markers",
+      x: [rsBest.x],
+      y: [rsBest.y],
+      name: lbl.rsBest,
+      marker: {
+        size: 13,
+        color: light ? "#7c3aed" : "#c084fc",
+        symbol: "diamond",
+        line: { width: 2, color: "#fff" },
+      },
+      showlegend: false,
+      hovertemplate: "best RS<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=" + rsBest.z.toFixed(5) + "<extra></extra>",
+    });
+  }
+
+  const g = meta.globalMin;
+  traces.push({
+    type: "scatter",
+    mode: "markers",
+    x: [g.x],
+    y: [g.y],
+    name: lbl.g,
+    marker: { size: 15, color: light ? "#b45309" : "#fbbf24", symbol: "star", line: { width: 2, color: "#fff" } },
+    showlegend: false,
+    hovertemplate:
+      (lang === "fa" ? "کمینهٔ سراسری (مرجع)" : lang === "ar" ? "الحد العام (مرجع)" : "Global min (ref)") +
+      "<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>",
+  });
+
+  for (const p of meta.localHints) {
+    traces.push({
+      type: "scatter",
+      mode: "markers",
+      x: [p.x],
+      y: [p.y],
+      name: lbl.l,
+      marker: {
+        size: 12,
+        color: light ? "#e11d48" : "#fb7185",
+        symbol: "cross",
+        line: { width: 2, color: "#fff" },
+      },
+      showlegend: false,
+      hovertemplate:
+        (lang === "fa" ? "کمینهٔ محلی (نمونه)" : lang === "ar" ? "حد محلي (عرض)" : "Local min (demo)") +
+        "<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>",
+    });
+  }
+
+  const domain = meta.domain;
+  const grid = light ? "rgba(15,23,42,0.1)" : "rgba(255,255,255,0.08)";
+  const linec = light ? "rgba(15,23,42,0.28)" : "rgba(255,255,255,0.22)";
+  const xTitle = lang === "fa" ? "x" : lang === "ar" ? "x" : "x";
+  const yTitle = lang === "fa" ? "y" : lang === "ar" ? "y" : "y";
+
+  const layout = {
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: light ? "rgba(248,250,252,0.35)" : "rgba(22,29,39,0.25)",
+    font: theme.font,
+    margin: { l: 54, r: 70, t: 20, b: 50 },
+    xaxis: {
+      title: { text: xTitle, font: { size: 12 } },
+      range: [domain.x[0], domain.x[1]],
+      scaleanchor: "y",
+      scaleratio: 1,
+      constrain: "domain",
+      gridcolor: grid,
+      zeroline: false,
+      showline: true,
+      linecolor: linec,
+      tickfont: { size: 10 },
+    },
+    yaxis: {
+      title: { text: yTitle, font: { size: 12 } },
+      range: [domain.y[0], domain.y[1]],
+      gridcolor: grid,
+      zeroline: false,
+      showline: true,
+      linecolor: linec,
+      tickfont: { size: 10 },
+    },
+    showlegend: false,
+    hovermode: "closest",
+  };
+
+  return { traces, layout, config: { responsive: true, displayModeBar: true, displaylogo: false } };
+}
+
 function syncSlidersToDomain() {
   const m = land();
   const sx = document.getElementById("slider-x0");
@@ -601,13 +888,7 @@ function runComparison() {
 
   document.getElementById("status-line").textContent = I18N[lang].status_done;
 
-  const { traces, layout, config } = buildPlot(lastHcPath, lastRsPoints, lastRsBest, meta);
-  const el = document.getElementById("plot-3d");
-  if (plotInitialized) Plotly.react(el, traces, layout, config);
-  else {
-    Plotly.newPlot(el, traces, layout, config);
-    plotInitialized = true;
-  }
+  renderBothPlots(lastHcPath);
 }
 
 function stopAnim() {
@@ -632,15 +913,13 @@ function animateHcPlayback() {
   document.getElementById("btn-stop").style.display = "";
   document.getElementById("status-line").textContent = I18N[lang].status_anim;
 
-  const meta = land();
   const delay = Math.max(0, parseInt(document.getElementById("input-anim-delay").value, 10) || 0);
   let i = 1;
 
   function step() {
     if (!animating) return;
     const slice = lastHcPath.slice(0, Math.max(1, i));
-    const { traces, layout, config } = buildPlot(slice, lastRsPoints, lastRsBest, meta);
-    Plotly.react(document.getElementById("plot-3d"), traces, layout, config);
+    renderBothPlots(slice);
     i++;
     if (i > lastHcPath.length) {
       stopAnim();
@@ -659,15 +938,19 @@ function setTheme(theme) {
   try {
     localStorage.setItem("vizopt-theme", theme);
   } catch (_) {}
-  if (lastHcPath.length && plotInitialized) {
-    const { traces, layout, config } = buildPlot(lastHcPath, lastRsPoints, lastRsBest, land());
-    Plotly.react(document.getElementById("plot-3d"), traces, layout, config);
+  if (lastHcPath.length && plot3dInitialized) {
+    renderBothPlots(lastHcPath);
   }
 }
 
-function resetCamera() {
-  if (!plotInitialized) return;
+function resetViews() {
+  if (!plot3dInitialized) return;
   Plotly.relayout(document.getElementById("plot-3d"), { "scene.camera": defaultCamera() });
+  const m = land();
+  Plotly.relayout(document.getElementById("plot-2d"), {
+    "xaxis.range": [m.domain.x[0], m.domain.x[1]],
+    "yaxis.range": [m.domain.y[0], m.domain.y[1]],
+  });
 }
 
 document.getElementById("select-landscape").addEventListener("change", () => {
@@ -709,38 +992,34 @@ document.getElementById("btn-stop").addEventListener("click", () => {
   animating = false;
   stopAnim();
   document.getElementById("status-line").textContent = I18N[lang].status_stopped;
-  if (lastHcPath.length && plotInitialized) {
-    const { traces, layout, config } = buildPlot(lastHcPath, lastRsPoints, lastRsBest, land());
-    Plotly.react(document.getElementById("plot-3d"), traces, layout, config);
+  if (lastHcPath.length && plot3dInitialized) {
+    renderBothPlots(lastHcPath);
   }
 });
 
-document.getElementById("btn-reset-view").addEventListener("click", resetCamera);
+document.getElementById("btn-reset-view").addEventListener("click", resetViews);
 
 document.getElementById("lang-fa").addEventListener("click", () => {
   lang = "fa";
   applyI18n();
-  if (lastHcPath.length && plotInitialized) {
-    const { traces, layout, config } = buildPlot(lastHcPath, lastRsPoints, lastRsBest, land());
-    Plotly.react(document.getElementById("plot-3d"), traces, layout, config);
+  if (lastHcPath.length && plot3dInitialized) {
+    renderBothPlots(lastHcPath);
   }
 });
 
 document.getElementById("lang-ar").addEventListener("click", () => {
   lang = "ar";
   applyI18n();
-  if (lastHcPath.length && plotInitialized) {
-    const { traces, layout, config } = buildPlot(lastHcPath, lastRsPoints, lastRsBest, land());
-    Plotly.react(document.getElementById("plot-3d"), traces, layout, config);
+  if (lastHcPath.length && plot3dInitialized) {
+    renderBothPlots(lastHcPath);
   }
 });
 
 document.getElementById("lang-en").addEventListener("click", () => {
   lang = "en";
   applyI18n();
-  if (lastHcPath.length && plotInitialized) {
-    const { traces, layout, config } = buildPlot(lastHcPath, lastRsPoints, lastRsBest, land());
-    Plotly.react(document.getElementById("plot-3d"), traces, layout, config);
+  if (lastHcPath.length && plot3dInitialized) {
+    renderBothPlots(lastHcPath);
   }
 });
 
@@ -748,8 +1027,8 @@ document.getElementById("theme-dark").addEventListener("click", () => setTheme("
 document.getElementById("theme-light").addEventListener("click", () => setTheme("light"));
 
 window.addEventListener("resize", () => {
-  const el = document.getElementById("plot-3d");
-  if (plotInitialized && el) Plotly.Plots.resize(el);
+  applySplitLayout();
+  resizePlots();
 });
 
 try {
@@ -758,5 +1037,7 @@ try {
 } catch (_) {}
 
 applyI18n();
+applySplitLayout();
+initSplitGutter();
 syncSlidersToDomain();
 runComparison();

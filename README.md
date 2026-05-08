@@ -10,7 +10,29 @@
 
 [**پرش به العربية**](#النسخة-العربية-rtl) · [**Jump to English**](#english-version-ltr)
 
+[![نسخهٔ زنده — GitHub Pages](https://img.shields.io/badge/Demo-GitHub%20Pages-0d9488?style=for-the-badge)](https://khalooei.github.io/visualize-optimization/)
+
 </div>
+
+---
+
+## نسخهٔ زنده (GitHub Pages)
+
+**آدرس دمو:** [**https://khalooei.github.io/visualize-optimization/**](https://khalooei.github.io/visualize-optimization/)
+
+| نقش | توضیح |
+|-----|--------|
+| **دانشجو / مخاطب** | همان لینک؛ مرورگر مدرن کافی است؛ **نیازی به Python نیست**. |
+| **منتشرکنندهٔ مخزن** | GitHub Pages فقط **فایل‌های استاتیک** را سرو می‌کند؛ **سرور FastAPI روی Pages اجرا نمی‌شود**. خودِ رابط کاربری این پروژه **کاملاً در مرورگر** (HTML + JavaScript + Plotly از CDN) کار می‌کند؛ workflow زیر همان bundle را می‌سازد و منتشر می‌کند. |
+
+### فعال‌سازی یک‌بار در تنظیمات GitHub
+
+1. در مخزن بروید به **Settings** → **Pages**.
+2. در **Build and deployment**، فیلد **Source** را روی **GitHub Actions** بگذارید (نه «Deploy from a branch» مگر اینکه خودتان پوشهٔ `docs/` را به‌صورت دستی پر کرده باشید).
+3. فایل workflow همین پروژه است: [`.github/workflows/pages.yml`](.github/workflows/pages.yml). با هر **push** به شاخهٔ `main` اجرا می‌شود؛ یا از تب **Actions** گزینهٔ **Run workflow** را بزنید.
+4. پس از پایان jobهای **build** و **deploy** (معمولاً ۱–۳ دقیقه)، آدرس بالا باید **برنامهٔ تعاملی سه‌بعدی** را نشان دهد.
+
+> **اگر هنوز متن README یا مارک‌داون «خام» می‌بینید:** احتمالاً Pages هنوز از منبع دیگری (مثلاً ریشهٔ branch بدون `index.html` درست) تغذیه می‌شود. **Source** را حتماً روی **GitHub Actions** تنظیم کنید تا خروجی workflow (شامل `index.html` و `static/`) مستقر شود.
 
 ---
 
@@ -33,7 +55,7 @@
 
 بهینه‌سازی را می‌توان بدون ورود زودهنگام به جبر سنگین، با **دیدن** منظرهٔ تابع و **حرکت الگوریتم** روی آن آموزش داد. این برنامه یک **منظرهٔ سه‌بعدی تعاملی** از تابع هدف \(f(x,y)\) نشان می‌دهد و هم‌زمان دو رویکرد کلاسیک را کنار هم می‌گذارد:
 
-- **بالاروی تپ (Hill Climbing)** روی مسئلهٔ **کمینه‌سازی**: فقط حرکت‌هایی پذیرفته می‌شوند که مقدار تابع را کاهش دهند؛ مسیر معمولاً **حریص** و **محلی** است و ممکن است در یک **بهینهٔ محلی** گیر کند.
+- **تپه نوردی (Hill Climbing)** روی مسئلهٔ **کمینه‌سازی**: فقط حرکت‌هایی پذیرفته می‌شوند که مقدار تابع را کاهش دهند؛ مسیر معمولاً **حریص** و **محلی** است و ممکن است در یک **بهینهٔ محلی** گیر کند.
 - **جستجوی تصادفی (Random Search)**: نمونه‌گیری در کل **دامنه**؛ بهترین نمونه گزارش می‌شود. با افزایش بودجهٔ نمونه، **شانس رسیدن به درهٔ عمیق‌تر** (اغلب نزدیک **بهینهٔ سراسری**) بیشتر می‌شود.
 
 رابط کاربری به **سه زبان فارسی، عربی و انگلیسی** طراحی شده است تا در کلاس‌های چندزبانه یا بین‌المللی بدون تغییر کد قابل استفاده باشد.
@@ -108,6 +130,10 @@ python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 
 ## النسخة العربية (RTL)
 
+### عرض مباشر (GitHub Pages)
+
+[**https://khalooei.github.io/visualize-optimization/**](https://khalooei.github.io/visualize-optimization/) — يعمل في المتصفح فقط (HTML/JS). لنشر التحديثات: **Settings → Pages → Source: GitHub Actions** ثم دفع إلى `main` أو تشغيل workflow **Deploy GitHub Pages**.
+
 <div align="center">
 
 [![المستودع](https://img.shields.io/badge/GitHub-visualize--optimization-1c2533?style=flat-square&logo=github)](https://github.com/khalooei/visualize-optimization)
@@ -165,6 +191,14 @@ python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ---
 
 ## English version (LTR)
+
+### Live site (GitHub Pages)
+
+**Demo URL:** [**https://khalooei.github.io/visualize-optimization/**](https://khalooei.github.io/visualize-optimization/)
+
+This URL must serve the **static web app** (`index.html` + `static/*`), not a raw README. GitHub Pages does **not** run FastAPI; deployment is handled by [**`.github/workflows/pages.yml`**](.github/workflows/pages.yml), which copies `templates/index.html` and `static/` into the Pages artifact.
+
+**One-time setup:** Repository **Settings → Pages → Build and deployment → Source: GitHub Actions**. Push to `main` (or run the workflow manually). After **Deploy GitHub Pages** completes, the demo link should load the interactive Plotly UI.
 
 <div align="center">
 

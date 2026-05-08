@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visualize Optimization</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=Noto+Sans+Arabic:wght@400;600;700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <link rel="stylesheet" href="static/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-mark">◇</span>
+        <div class="brand-text">
+          <h1 data-i18n="title">بهینه‌سازی تعاملی در ۳ بعد — تپه نوردی در مقابل جستجوی تصادفی</h1>
+          <p class="subtitle" data-i18n="subtitle">منظرهٔ هزینه، نقطهٔ سراسری و نقاط محلی، مقایسهٔ مسیرها</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="theme-switch" role="group" aria-label="Theme">
+          <button type="button" id="theme-dark" class="theme-btn active" data-theme-pick="dark" aria-pressed="true" data-i18n="theme_dark">شب</button>
+          <button type="button" id="theme-light" class="theme-btn" data-theme-pick="light" aria-pressed="false" data-i18n="theme_light">روز</button>
+        </div>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" id="lang-fa" class="lang-btn active" aria-pressed="true">فارسی</button>
+          <button type="button" id="lang-ar" class="lang-btn" aria-pressed="false">العربية</button>
+          <button type="button" id="lang-en" class="lang-btn" aria-pressed="false">English</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel intro-panel">
+        <h2 data-i18n="intro_title">ایدهٔ آموزشی</h2>
+        <p class="lead" data-i18n="intro_p1"></p>
+        <ul class="bullets">
+          <li data-i18n="bullet_hc"></li>
+          <li data-i18n="bullet_rs"></li>
+          <li data-i18n="bullet_local"></li>
+          <li data-i18n="bullet_global"></li>
+        </ul>
+        <p class="small muted" data-i18n="repro_note"></p>
+        <div class="formula-note" data-i18n="formula_note"></div>
+      </section>
+
+      <section class="panel controls-panel">
+        <h2 data-i18n="controls_title">کنترل‌ها</h2>
+        <div class="control-grid">
+          <label class="field">
+            <span data-i18n="label_landscape">منظرهٔ تابع</span>
+            <select id="select-landscape" class="select-input">
+              <option value="smooth_bowl" data-i18n-opt="landscape_bowl"></option>
+              <option value="double_well" data-i18n-opt="landscape_double"></option>
+              <option value="rastrigin" data-i18n-opt="landscape_rastrigin"></option>
+              <option value="ackley" data-i18n-opt="landscape_ackley"></option>
+            </select>
+          </label>
+          <label class="field">
+            <span data-i18n="label_seed">بذرهٔ تصادفی</span>
+            <input type="number" id="input-seed" value="42" min="0" max="999999" step="1" />
+          </label>
+          <label class="field">
+            <span data-i18n="label_start_x">شروع x₀</span>
+            <input type="range" id="slider-x0" min="-2.5" max="2.5" step="0.05" value="1.2" />
+            <output id="out-x0">1.20</output>
+          </label>
+          <label class="field">
+            <span data-i18n="label_start_y">شروع y₀</span>
+            <input type="range" id="slider-y0" min="-2.5" max="2.5" step="0.05" value="-0.8" />
+            <output id="out-y0">-0.80</output>
+          </label>
+          <label class="field">
+            <span data-i18n="label_hc_mode">حالت تپه نوردی</span>
+            <select id="select-hc-mode" class="select-input">
+              <option value="random" data-i18n-opt="hc_mode_random"></option>
+              <option value="neighbors" data-i18n-opt="hc_mode_neighbors"></option>
+            </select>
+          </label>
+          <label class="field">
+            <span data-i18n="label_hc_steps">حداکثر گام HC</span>
+            <input type="number" id="input-hc-steps" value="180" min="20" max="800" step="10" />
+          </label>
+          <label class="field">
+            <span data-i18n="label_hc_step">اندازهٔ گام HC</span>
+            <input type="number" id="input-hc-step" value="0.18" min="0.02" max="0.6" step="0.01" />
+          </label>
+          <label class="field">
+            <span data-i18n="label_rs_samples">نمونهٔ جستجوی تصادفی</span>
+            <input type="number" id="input-rs-n" value="220" min="30" max="1200" step="10" />
+          </label>
+          <label class="field">
+            <span data-i18n="label_anim_delay">تأخیر انیمیشن HC (ms)</span>
+            <input type="number" id="input-anim-delay" value="45" min="0" max="400" step="5" />
+          </label>
+          <label class="field checkbox-field">
+            <input type="checkbox" id="chk-show-all-rs" checked />
+            <span data-i18n="label_show_all_rs">نمایش همهٔ نمونه‌های RS (شفاف)</span>
+          </label>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" id="btn-run" class="btn primary" data-i18n="btn_run">اجرای مقایسه</button>
+          <button type="button" id="btn-animate-hc" class="btn" data-i18n="btn_animate_hc">پخش مسیر HC</button>
+          <button type="button" id="btn-stop" class="btn danger" data-i18n="btn_stop" style="display: none">توقف</button>
+          <button type="button" id="btn-reset-view" class="btn" data-i18n="btn_reset_view">بازنشانی نما</button>
+        </div>
+        <p id="status-line" class="status-line muted small" aria-live="polite"></p>
+
+        <div class="metrics-row">
+          <div class="metric-tile hc">
+            <span class="label" data-i18n="metric_hc_final">بهترین HC (کمینه)</span>
+            <span class="value" id="metric-hc">—</span>
+          </div>
+          <div class="metric-tile rs">
+            <span class="label" data-i18n="metric_rs_best">بهترین RS</span>
+            <span class="value" id="metric-rs">—</span>
+          </div>
+          <div class="metric-tile glob">
+            <span class="label" data-i18n="metric_global_ref">مرجع سراسری (تقریبی)</span>
+            <span class="value" id="metric-global">—</span>
+          </div>
+        </div>
+
+        <div class="legend-strip" id="legend-strip" aria-hidden="false">
+          <span class="legend-item"><span class="legend-swatch surface"></span><span data-i18n="legend_surface">سطح f(x,y)</span></span>
+          <span class="legend-item"><span class="legend-swatch hc"></span><span data-i18n="legend_hc">مسیر تپه نوردی</span></span>
+          <span class="legend-item"><span class="legend-swatch rs"></span><span data-i18n="legend_rs">جستجوی تصادفی</span></span>
+          <span class="legend-item"><span class="legend-swatch global"></span><span data-i18n="legend_global">کمینهٔ سراسری</span></span>
+          <span class="legend-item"><span class="legend-swatch local"></span><span data-i18n="legend_local">کمینهٔ محلی (نمونه)</span></span>
+        </div>
+      </section>
+
+      <section class="chart-card">
+        <header>
+          <h2 data-i18n="chart_title">منظرهٔ سه‌بعدی و مسیرها</h2>
+          <p class="chart-hint" data-i18n="chart_hint"></p>
+        </header>
+        <div id="plot-3d" class="plot-3d"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span data-i18n="footer">تهیه‌شده توسط محمد خالوئی</span>
+    </footer>
+  </div>
+
+  <script src="static/app.js"></script>
+</body>
+</html>

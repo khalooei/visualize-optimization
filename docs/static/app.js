@@ -69,18 +69,23 @@ const LANDSCAPES = {
 
 const I18N = {
   fa: {
-    title: "بهینه‌سازی تعاملی در ۳ بعد — تپه نوردی در مقابل جستجوی تصادفی",
-    subtitle: "منظرهٔ هزینه، کمینهٔ سراسری و محلی؛ نمای سه‌بعدی و نقشهٔ دوبعدی هم‌زمان",
+    title: "بهینه‌سازی تعاملی در ۳ بعد — تپه‌نوردی در برابر جستجوی تصادفی",
+    subtitle: "منظرهٔ تابع هدف، کمینهٔ سراسری و محلی؛ نمای سه‌بعدی و نقشهٔ تراز هم‌زمان",
     intro_title: "ایدهٔ آموزشی",
     intro_p1:
-      "در کمینه‌سازی، «کمینهٔ سراسری» بهترین مقدار در کل دامنه است؛ «کمینهٔ محلی» فقط از نظر همسایگی بهتر است. تپه نوردی (Hill Climbing) فقط بهبودهای محلی می‌پذیرد؛ بنابراین اغلب در چاله‌های کم‌عمق گیر می‌کند. جستجوی تصادفی (Random Search) نمونه‌ها را در کل دامنه می‌پاشد و گاهی چالهٔ عمیق‌تر را می‌یابد — هرچه بودجهٔ نمونه بیشتر شود، شانس یافتن سراسری بهتر می‌شود.",
-    bullet_hc: "Hill Climbing: از نقطهٔ شروع، فقط اگر نقطهٔ جدید هزینه را کاهش دهد حرکت می‌کند؛ مسیر پیوسته و حریص است.",
-    bullet_rs: "Random Search: نمونه‌های مستقل در دامنه؛ بهترین نمونه گزارش می‌شود — بدون حریص بودن محلی.",
-    bullet_local: "کمینهٔ محلی: اطرافش را بالا بروید هزینه بدتر می‌شود؛ اما جای بهتری در جای دیگر دامنه وجود دارد.",
-    bullet_global: "کمینهٔ سراسری: هیچ نقطه‌ای در دامنه بهتر از آن نیست (در این دمو با نشانگر طلایی مشخص شده است).",
-    repro_note: "بذرهٔ تصادفی را تغییر دهید تا شروع و نمونه‌های RS تکرارپذیر یا متفاوت شوند.",
+      "در کمینه‌سازی، «کمینهٔ سراسری» بهترین مقدار در کل دامنه است و «کمینهٔ محلی» فقط در یک همسایگی بهترین است. تپه‌نوردی (Hill Climbing، مخفف HC) فقط حرکت‌های کاهندهٔ هزینه را می‌پذیرد؛ بنابراین اغلب در چالهٔ کم‌عمق گیر می‌کند. جستجوی تصادفی (Random Search، مخفف RS) نمونه‌های مستقل در کل دامنه می‌گیرد و بهترین را نگه می‌دارد — با بیشتر شدن بودجهٔ نمونه، شانس رسیدن به چالهٔ عمیق‌تر (معمولاً نزدیک کمینهٔ سراسری) بیشتر می‌شود.",
+    bullet_hc:
+      "تپه‌نوردی (HC): از نقطهٔ شروع، تنها اگر نقطهٔ جدید مقدار تابع هدف را کمتر کند حرکت می‌کند؛ مسیر پیوسته و حریص است.",
+    bullet_rs:
+      "جستجوی تصادفی (RS): نمونه‌گیری یکنواخت و مستقل در دامنه؛ بهترین نمونه گزارش می‌شود — بدون حرکت حریصانهٔ محلی.",
+    bullet_local:
+      "کمینهٔ محلی: با جابه‌جایی کوچک در هر جهت مقدار تابع بدتر می‌شود، اما در جای دیگری از دامنه نقطهٔ بهتری وجود دارد.",
+    bullet_global:
+      "کمینهٔ سراسری: هیچ نقطه‌ای در دامنه بهتر از آن نیست (در این نمایش با ستارهٔ طلایی مشخص شده است).",
+    repro_note:
+      "بذرهٔ تصادفی را عوض کنید تا نقطهٔ شروع و نمونه‌های جستجوی تصادفی یکسان یا متفاوت تکرارپذیر شوند.",
     formula_note:
-      "نمونه‌ها: کاسهٔ صاف (یک چاله)، چالهٔ دوتایی (سراسری عمیق و محلی کم‌عمق)، Rastrigin و Ackley (چاله‌های متعدد). هدف: min f(x,y).",
+      "توابع نمونه: کاسهٔ صاف (یک چاله)، دو چاله (کمینهٔ سراسری عمیق و کمینهٔ محلی کم‌عمق)، Rastrigin و Ackley (چاله‌های متعدد). هدف: min f(x,y).",
     controls_title: "کنترل‌ها",
     label_landscape: "منظرهٔ تابع",
     landscape_bowl: "کاسهٔ صاف (یک کمینه)",
@@ -90,54 +95,57 @@ const I18N = {
     label_seed: "بذرهٔ تصادفی",
     label_start_x: "شروع x₀",
     label_start_y: "شروع y₀",
-    label_hc_mode: "حالت تپه نوردی",
+    label_hc_mode: "حالت تپه‌نوردی",
     hc_mode_random: "گام تصادفی در شعاع",
     hc_mode_neighbors: "۸ همسایهٔ شبکه‌ای",
-    label_hc_steps: "حداکثر گام HC",
-    label_hc_step: "اندازهٔ گام HC",
-    label_rs_samples: "تعداد نمونهٔ RS",
-    label_anim_delay: "تأخیر انیمیشن HC (میلی‌ثانیه)",
-    label_show_all_rs: "نمایش همهٔ نمونه‌های RS",
+    label_hc_steps: "حداکثر گام تپه‌نوردی (HC)",
+    label_hc_step: "اندازهٔ گام تپه‌نوردی (HC)",
+    label_rs_samples: "تعداد نمونهٔ جستجوی تصادفی (RS)",
+    label_anim_delay: "تأخیر انیمیشن تپه‌نوردی، میلی‌ثانیه",
+    label_show_all_rs: "نمایش همهٔ نمونه‌های جستجوی تصادفی (شفاف)",
     btn_run: "اجرای مقایسه",
-    btn_animate_hc: "پخش تدریجی مسیر HC",
+    btn_animate_hc: "پخش تدریجی مسیر تپه‌نوردی",
     btn_stop: "توقف",
-    btn_reset_view: "بازنشانی نما (۳بعدی و محورهای ۲بعدی)",
+    btn_reset_view: "بازنشانی نما (سه‌بعدی و محورهای دوبعدی)",
     chart_pair_lead:
-      "چیدمان از چپ به راست: سه‌بعدی، سپس دوبعدی. نوار باریک وسط را بکشید تا یک پنجره بزرگ‌تر شود — برای تمرکز روی شکل فضایی یا روی نقشهٔ تراز.",
+      "چیدمان از چپ به راست: نمای سه‌بعدی، سپس نقشهٔ تراز. نوار باریک وسط را بکشید تا یکی از پنجره‌ها بزرگ‌تر شود — برای تمرکز بر شکل فضایی یا بر خطوط تراز.",
     chart_title_3d: "سطح سه‌بعدی f(x, y)",
     chart_hint_3d:
-      "بچرخانید و زوم کنید. رنگ‌ها همان f است. سیان: مسیر HC؛ بنفش: RS؛ ستاره: کمینهٔ سراسری؛ ضربدر: کمینهٔ محلی (دوچاله).",
+      "بچرخانید و زوم کنید. رنگ‌ها مقدار f را نشان می‌دهند. آبی فیروزه‌ای: مسیر تپه‌نوردی؛ بنفش: نمونه‌های جستجوی تصادفی؛ ستاره: کمینهٔ سراسری؛ ضربدر: کمینهٔ محلی (در منظرهٔ «دو چاله»).",
     chart_title_2d: "نقشهٔ تراز (کانتور) روی صفحهٔ (x, y)",
     chart_hint_2d:
-      "همان دامنه و همان نمادها، از بالا: چاله‌ها و مسیر HC روی خطوط تراز دیده می‌شود. محورها با مقیاس یکسان‌اند تا فاصله در دامنه درست باشد.",
+      "همان دامنه و همان نمادها، از بالا: چاله‌ها و مسیر تپه‌نوردی روی خطوط تراز دیده می‌شوند. نسبت طول محورها یک‌به‌یک است تا فاصله در دامنه درست دیده شود.",
     gutter_help: "کشیدن نوار وسط برای تغییر نسبت عرض نمودار سه‌بعدی و دوبعدی",
-    metric_hc_final: "بهترین مقدار HC",
-    metric_rs_best: "بهترین مقدار RS",
+    metric_hc_final: "بهترین مقدار تپه‌نوردی (HC)",
+    metric_rs_best: "بهترین مقدار جستجوی تصادفی (RS)",
     metric_global_ref: "مقدار در کمینهٔ سراسری (مرجع)",
     legend_surface: "سطح f(x,y)",
-    legend_hc: "مسیر HC",
-    legend_rs: "نمونه‌های RS",
+    legend_hc: "مسیر تپه‌نوردی",
+    legend_rs: "نمونه‌های جستجوی تصادفی",
     legend_global: "کمینهٔ سراسری",
     legend_local: "کمینهٔ محلی (نمونه)",
     status_running: "در حال اجرا…",
     status_done: "آماده.",
     status_stopped: "متوقف شد.",
-    status_anim: "پخش مسیر HC…",
+    status_anim: "پخش مسیر تپه‌نوردی…",
     theme_dark: "شب",
     theme_light: "روز",
-    footer: "تهیه‌شده توسط محمد خالوئی",
+    footer:
+      "تهیه‌شده توسط محمد خالوئی · khalooei@aut.ac.ir · mohammad.khalooei@sharif.edu",
   },
   en: {
-    title: "Interactive 3D optimization — hill climbing vs random search",
-    subtitle: "3D surface plus 2D contour map — same data, clearer basins and paths",
+    title: "Interactive 3D optimization — Hill climbing vs random search",
+    subtitle: "Objective landscape, global vs local minima; 3D surface and 2D contour together",
     intro_title: "Teaching idea",
     intro_p1:
       "In minimization, a global minimum is the best value over the entire domain; a local minimum is only best in a neighborhood. Hill climbing (HC) accepts only improving moves, so it often gets trapped in a shallow basin. Random search (RS) draws independent samples across the domain and keeps the best — with more samples, the chance of finding a deeper (often global) basin improves.",
-    bullet_hc: "HC: from the start point, moves only when a candidate lowers the cost; the path is greedy and connected.",
-    bullet_rs: "RS: independent uniform samples; reports the best sample — no local greed.",
-    bullet_local: "Local minimum: moving a little in any direction worsens the cost, yet a better point exists elsewhere.",
+    bullet_hc:
+      "Hill climbing (HC): from the start point, moves only when a candidate lowers the objective; the path is greedy and connected.",
+    bullet_rs:
+      "Random search (RS): independent uniform samples over the domain; reports the best sample — no local greedy moves.",
+    bullet_local: "Local minimum: moving a little in any direction worsens the objective value, yet a better point exists elsewhere.",
     bullet_global: "Global minimum: no point in the domain is better (marked with a gold star in this demo).",
-    repro_note: "Change the random seed to make starts and RS samples reproducible or varied.",
+    repro_note: "Change the random seed to make the start point and random-search samples reproducible or varied.",
     formula_note:
       "Landscapes: smooth bowl (one well), double well (deep global vs shallow local), Rastrigin and Ackley (many wells). Objective: minimize f(x,y).",
     controls_title: "Controls",
@@ -150,53 +158,57 @@ const I18N = {
     label_start_x: "Start x₀",
     label_start_y: "Start y₀",
     label_hc_mode: "Hill climbing mode",
-    hc_mode_random: "Random step in radius",
+    hc_mode_random: "Random step in a radius",
     hc_mode_neighbors: "8 grid neighbors",
-    label_hc_steps: "Max HC iterations",
-    label_hc_step: "HC step size",
-    label_rs_samples: "Random search samples",
-    label_anim_delay: "HC animation delay (ms)",
-    label_show_all_rs: "Show all RS samples",
+    label_hc_steps: "Max hill-climbing iterations (HC)",
+    label_hc_step: "Hill-climbing step size (HC)",
+    label_rs_samples: "Number of random-search samples (RS)",
+    label_anim_delay: "Hill-climbing animation delay (ms)",
+    label_show_all_rs: "Show all random-search samples",
     btn_run: "Run comparison",
-    btn_animate_hc: "Animate HC path",
+    btn_animate_hc: "Animate hill-climbing path",
     btn_stop: "Stop",
     btn_reset_view: "Reset 3D camera & 2D axes",
     chart_pair_lead:
-      "Layout is left-to-right: 3D then 2D. Drag the narrow bar between panes to resize — focus on the surface shape or the contour map.",
+      "Layout is left-to-right: 3D then 2D. Drag the narrow bar between panes to resize — focus on the surface or on the contour map.",
     chart_title_3d: "3D surface f(x, y)",
     chart_hint_3d:
-      "Drag to orbit, scroll to zoom. Colors encode f. Cyan: HC path; purple: RS; star: global minimum; crosses: local minimum (double well).",
+      "Drag to orbit, scroll to zoom. Colors encode f. Cyan: hill-climbing path; purple: random-search samples; star: global minimum; crosses: local minimum (double-well landscape).",
     chart_title_2d: "Contour map (top-down)",
     chart_hint_2d:
-      "Same domain and markers as 3D, from above: basins and the HC path on level sets. Axes use a 1:1 scale so distances in the domain are true.",
+      "Same domain and markers as 3D, from above: basins and the hill-climbing path on level sets. Axes are 1:1 so distances in the domain are true.",
     gutter_help: "Drag the middle bar to resize the 3D vs 2D pane widths",
-    metric_hc_final: "Best HC value",
-    metric_rs_best: "Best RS value",
+    metric_hc_final: "Best hill-climbing value (HC)",
+    metric_rs_best: "Best random-search value (RS)",
     metric_global_ref: "Value at global min (ref)",
     legend_surface: "Surface f(x,y)",
-    legend_hc: "HC path",
-    legend_rs: "RS samples",
+    legend_hc: "Hill-climbing path",
+    legend_rs: "Random-search samples",
     legend_global: "Global minimum",
     legend_local: "Local minimum (demo)",
     status_running: "Running…",
     status_done: "Ready.",
     status_stopped: "Stopped.",
-    status_anim: "Animating HC…",
+    status_anim: "Animating hill-climbing path…",
     theme_dark: "Night",
     theme_light: "Day",
-    footer: "Prepared by Mohammad Khalooei",
+    footer: "Prepared by Mohammad Khalooei · khalooei@aut.ac.ir · mohammad.khalooei@sharif.edu",
   },
   ar: {
     title: "تحسين تفاعلي ثلاثي الأبعاد — صعود التل مقابل البحث العشوائي",
-    subtitle: "منظر دالة التكلفة، الحد الأدنى العام مقابل المحلي، مسارات تفاعلية",
+    subtitle: "منظر دالة الهدف، الحدّ الأدنى العام والمحلي؛ السطح ثلاثي الأبعاد وخريطة التساوي معًا",
     intro_title: "الفكرة التعليمية",
     intro_p1:
-      "في التصغير، الحد الأدنى العام هو الأفضل على كامل المجال، والحد الأدنى المحلي أفضل فقط في جوار نقطة ما. صعود التل (HC) يقبل تحسينات محلية فقط، فيعلق غالبا في حوض ضحل. البحث العشوائي (RS) يأخذ عينات مستقلة عبر المجال ويحتفظ بالأفضل — ومع زيادة عدد العينات تزداد فرصة إيجاد حوض أعمق (غالبا عام).",
-    bullet_hc: "HC: من نقطة البداية يتحرك فقط إذا خفّت التكلفة؛ المسار جشع ومتصل.",
-    bullet_rs: "RS: عينات موحدة مستقلة؛ يُبلغ عن أفضل عينة — بلا جشع محلي.",
-    bullet_local: "حد أدنى محلي: أي إزاحة صغيرة تزيد التكلفة، لكن توجد نقطة أفضل في مكان آخر.",
-    bullet_global: "حد أدنى عام: لا توجد نقطة أفضل في المجال (يُمثل بنجمة ذهبية في العرض).",
-    repro_note: "غيّر البذرة لتكرار أو تنويع نقطة البداية وعينات RS.",
+      "في التصغير، الحدّ الأدنى العام هو الأفضل على كامل المجال، والحدّ الأدنى المحلي الأفضل فقط في جوار نقطة ما. صعود التل (Hill Climbing، اختصار HC) يقبل فقط الخطوات التي تخفّض قيمة الدالة؛ فيعلق غالبًا في حوض ضحل. البحث العشوائي (Random Search، اختصار RS) يأخذ عينات مستقلة وموحّدة على المجال ويحتفظ بالأفضل — ومع زيادة عدد العينات تزداد فرصة الوصول إلى حوض أعمق (غالبًا قريبًا من الحدّ العام).",
+    bullet_hc:
+      "صعود التل (HC): من نقطة البداية يتحرك فقط إذا خفّت قيمة الدالة؛ المسار جشع ومتصل.",
+    bullet_rs:
+      "البحث العشوائي (RS): عينات موحّدة ومستقلة على المجال؛ يُبلغ عن أفضل عينة — بلا حركة جشعة محلية.",
+    bullet_local:
+      "حدّ أدنى محلي: أي إزاحة صغيرة في أي اتجاه تزيد قيمة الدالة، لكن توجد نقطة أفضل في مكان آخر من المجال.",
+    bullet_global:
+      "حدّ أدنى عام: لا توجد نقطة أفضل في المجال (يُمثل بنجمة ذهبية في هذا العرض).",
+    repro_note: "غيّر البذرة العشوائية لتكرار أو تنويع نقطة البداية وعينات البحث العشوائي.",
     formula_note:
       "المناظر: كأس ناعم، بئر مزدوج (عام عميق ومحلي ضحل)، Rastrigin وAckley (آبار متعددة). الهدف: min f(x,y).",
     controls_title: "عناصر التحكم",
@@ -211,39 +223,39 @@ const I18N = {
     label_hc_mode: "نمط صعود التل",
     hc_mode_random: "خطوة عشوائية في نصف قطر",
     hc_mode_neighbors: "8 جيران شبكية",
-    label_hc_steps: "أقصى تكرار لـ HC",
-    label_hc_step: "حجم خطوة HC",
-    label_rs_samples: "عينات البحث العشوائي",
-    label_anim_delay: "تأخير حركة HC (مللي ث)",
-    label_show_all_rs: "إظهار كل عينات RS",
+    label_hc_steps: "أقصى عدد خطوات صعود التل (HC)",
+    label_hc_step: "حجم خطوة صعود التل (HC)",
+    label_rs_samples: "عدد عينات البحث العشوائي (RS)",
+    label_anim_delay: "تأخير حركة صعود التل (مللي ثانية)",
+    label_show_all_rs: "إظهار كل عينات البحث العشوائي",
     btn_run: "تشغيل المقارنة",
-    btn_animate_hc: "تشغيل مسار HC",
+    btn_animate_hc: "تشغيل مسار صعود التل",
     btn_stop: "إيقاف",
     btn_reset_view: "إعادة ضبط الكاميرا والمحاور ثنائية البعد",
     chart_pair_lead:
-      "من اليسار إلى اليمين: ثلاثي الأبعاد ثم ثنائي. اسحب الشريط الوسطي لتغيير حجم اللوحتين.",
+      "من اليسار إلى اليمين: السطح ثلاثي الأبعاد ثم خريطة التساوي. اسحب الشريط الوسطي لتغيير حجم اللوحتين.",
     chart_title_3d: "سطح ثلاثي f(x, y)",
     chart_hint_3d:
-      "اسحب للدوران والتكبير. الألوان تمثل f. سماوي: HC؛ بنفسجي: RS؛ نجمة: الحد العام؛ صليب: حد محلي (البئر المزدوج).",
-    chart_title_2d: "خريطة كنتور من الأعلى",
+      "اسحب للدوران والتكبير. الألوان تمثل f. أزرق سماوي: مسار صعود التل؛ بنفسجي: عينات البحث العشوائي؛ نجمة: الحدّ العام؛ صليب: حدّ محلي (البئر المزدوج).",
+    chart_title_2d: "خريطة خطوط التساوي (من الأعلى)",
     chart_hint_2d:
-      "نفس المجال والرموز: الحفر ومسار HC على خطوط التساوي. المحاور بنسبة 1:1 لمسافات صحيحة.",
+      "نفس المجال والرموز: الأحواض ومسار صعود التل على خطوط التساوي. المحاور بنسبة 1:1 لمسافات صحيحة.",
     gutter_help: "اسحب الشريط الوسطي لتغيير عرض اللوحتين",
-    metric_hc_final: "أفضل قيمة HC",
-    metric_rs_best: "أفضل قيمة RS",
-    metric_global_ref: "القيمة عند الحد العام (مرجع)",
+    metric_hc_final: "أفضل قيمة لصعود التل (HC)",
+    metric_rs_best: "أفضل قيمة للبحث العشوائي (RS)",
+    metric_global_ref: "القيمة عند الحدّ الأدنى العام (مرجع)",
     legend_surface: "السطح f(x,y)",
-    legend_hc: "مسار HC",
-    legend_rs: "عينات RS",
-    legend_global: "الحد الأدنى العام",
-    legend_local: "الحد الأدنى المحلي (عرض)",
+    legend_hc: "مسار صعود التل",
+    legend_rs: "عينات البحث العشوائي",
+    legend_global: "الحدّ الأدنى العام",
+    legend_local: "الحدّ الأدنى المحلي (عرض)",
     status_running: "جار التشغيل…",
     status_done: "جاهز.",
     status_stopped: "تم الإيقاف.",
-    status_anim: "تشغيل مسار HC…",
+    status_anim: "تشغيل مسار صعود التل…",
     theme_dark: "ليلي",
     theme_light: "نهاري",
-    footer: "إعداد محمد خالوئی — Mohammad Khalooei",
+    footer: "إعداد محمد خالوئی · khalooei@aut.ac.ir · mohammad.khalooei@sharif.edu",
   },
 };
 
@@ -494,9 +506,31 @@ function buildSurfaceGrid(meta, nx = 52, ny = 52) {
 
 function traceLabels() {
   if (lang === "fa")
-    return { surf: "سطح", hc: "HC", rs: "RS", g: "سراسری", l: "محلی", rsBest: "بهترین RS" };
-  if (lang === "ar") return { surf: "السطح", hc: "HC", rs: "RS", g: "عام", l: "محلي", rsBest: "أفضل RS" };
-  return { surf: "Surface", hc: "Hill climb", rs: "Random search", g: "Global", l: "Local", rsBest: "Best RS" };
+    return {
+      surf: "سطح",
+      hc: "تپه‌نوردی",
+      rs: "جستجوی تصادفی",
+      g: "سراسری",
+      l: "محلی",
+      rsBest: "بهترین جستجوی تصادفی",
+    };
+  if (lang === "ar")
+    return {
+      surf: "السطح",
+      hc: "صعود التل",
+      rs: "البحث العشوائي",
+      g: "عام",
+      l: "محلي",
+      rsBest: "أفضل بحث عشوائي",
+    };
+  return {
+    surf: "Surface",
+    hc: "Hill climbing",
+    rs: "Random search",
+    g: "Global",
+    l: "Local",
+    rsBest: "Best random search",
+  };
 }
 
 function buildPlot(hcPathSlice, rsPoints, rsBest, meta) {
@@ -561,7 +595,7 @@ function buildPlot(hcPathSlice, rsPoints, rsBest, meta) {
       x: [hcPathSlice[hcPathSlice.length - 1].x],
       y: [hcPathSlice[hcPathSlice.length - 1].y],
       z: [hcPathSlice[hcPathSlice.length - 1].z],
-      name: lang === "fa" ? "پایان HC" : lang === "ar" ? "نهاية HC" : "HC end",
+      name: lang === "fa" ? "پایان تپه‌نوردی" : lang === "ar" ? "نهاية صعود التل" : "Hill climb end",
       marker: { size: 10, color: light ? "#0284c7" : "#7dd3fc", symbol: "circle", line: { width: 1, color: "#fff" } },
       showlegend: true,
     });
@@ -662,6 +696,32 @@ function buildPlot2D(hcPathSlice, rsPoints, rsBest, meta) {
   const light = document.documentElement.getAttribute("data-theme") === "light";
   const { xs, ys, Z } = buildSurfaceGrid(meta);
   const lbl = traceLabels();
+
+  const htHcLine =
+    lang === "fa"
+      ? "تپه‌نوردی<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>"
+      : lang === "ar"
+        ? "صعود التل<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>"
+        : "Hill climbing<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>";
+  const htHcEnd =
+    lang === "fa"
+      ? "پایان تپه‌نوردی<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>"
+      : lang === "ar"
+        ? "نهاية صعود التل<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>"
+        : "Hill climb end<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>";
+  const htRs =
+    lang === "fa"
+      ? "جستجوی تصادفی<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=%{text}<extra></extra>"
+      : lang === "ar"
+        ? "البحث العشوائي<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=%{text}<extra></extra>"
+        : "Random search<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=%{text}<extra></extra>";
+  const htRsBest = rsBest
+    ? lang === "fa"
+      ? "بهترین جستجوی تصادفی<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=" + rsBest.z.toFixed(5) + "<extra></extra>"
+      : lang === "ar"
+        ? "أفضل بحث عشوائي<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=" + rsBest.z.toFixed(5) + "<extra></extra>"
+        : "Best random search<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=" + rsBest.z.toFixed(5) + "<extra></extra>"
+    : "";
   const colorscale = light
     ? [
         [0, "#f8fafc"],
@@ -712,7 +772,7 @@ function buildPlot2D(hcPathSlice, rsPoints, rsBest, meta) {
       name: lbl.hc,
       line: { color: light ? "#0369a1" : "#38bdf8", width: 3.2 },
       showlegend: false,
-      hovertemplate: "HC<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>",
+      hovertemplate: htHcLine,
     });
   }
   if (hcShow) {
@@ -722,10 +782,10 @@ function buildPlot2D(hcPathSlice, rsPoints, rsBest, meta) {
       mode: "markers",
       x: [last.x],
       y: [last.y],
-      name: lang === "fa" ? "پایان HC" : lang === "ar" ? "نهاية HC" : "HC end",
+      name: lang === "fa" ? "پایان تپه‌نوردی" : lang === "ar" ? "نهاية صعود التل" : "Hill climb end",
       marker: { size: 11, color: light ? "#0284c7" : "#7dd3fc", line: { width: 1.5, color: "#fff" } },
       showlegend: false,
-      hovertemplate: "HC end<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>",
+      hovertemplate: htHcEnd,
     });
   }
 
@@ -744,7 +804,7 @@ function buildPlot2D(hcPathSlice, rsPoints, rsBest, meta) {
         line: { width: 0 },
       },
       showlegend: false,
-      hovertemplate: "RS<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=%{text}<extra></extra>",
+      hovertemplate: htRs,
     });
   }
 
@@ -762,7 +822,7 @@ function buildPlot2D(hcPathSlice, rsPoints, rsBest, meta) {
         line: { width: 2, color: "#fff" },
       },
       showlegend: false,
-      hovertemplate: "best RS<br>x=%{x:.4f}<br>y=%{y:.4f}<br>f=" + rsBest.z.toFixed(5) + "<extra></extra>",
+      hovertemplate: htRsBest,
     });
   }
 
@@ -776,7 +836,7 @@ function buildPlot2D(hcPathSlice, rsPoints, rsBest, meta) {
     marker: { size: 15, color: light ? "#b45309" : "#fbbf24", symbol: "star", line: { width: 2, color: "#fff" } },
     showlegend: false,
     hovertemplate:
-      (lang === "fa" ? "کمینهٔ سراسری (مرجع)" : lang === "ar" ? "الحد العام (مرجع)" : "Global min (ref)") +
+      (lang === "fa" ? "کمینهٔ سراسری (مرجع)" : lang === "ar" ? "الحدّ الأدنى العام (مرجع)" : "Global min (ref)") +
       "<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>",
   });
 
@@ -795,7 +855,7 @@ function buildPlot2D(hcPathSlice, rsPoints, rsBest, meta) {
       },
       showlegend: false,
       hovertemplate:
-        (lang === "fa" ? "کمینهٔ محلی (نمونه)" : lang === "ar" ? "حد محلي (عرض)" : "Local min (demo)") +
+        (lang === "fa" ? "کمینهٔ محلی (نمونه)" : lang === "ar" ? "الحدّ الأدنى المحلي (عرض)" : "Local min (demo)") +
         "<br>x=%{x:.4f}<br>y=%{y:.4f}<extra></extra>",
     });
   }

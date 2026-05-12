@@ -16,8 +16,8 @@
       <div class="brand">
         <span class="brand-mark">◇</span>
         <div class="brand-text">
-          <h1 data-i18n="title">بهینه‌سازی تعاملی در ۳ بعد — تپه نوردی در مقابل جستجوی تصادفی</h1>
-          <p class="subtitle" data-i18n="subtitle">منظرهٔ هزینه، نقطهٔ سراسری و نقاط محلی، مقایسهٔ مسیرها</p>
+          <h1 data-i18n="title">بهینه‌سازی تعاملی در ۳ بعد — تپه‌نوردی در برابر جستجوی تصادفی</h1>
+          <p class="subtitle" data-i18n="subtitle">منظرهٔ تابع هدف، کمینهٔ سراسری و محلی؛ نمای سه‌بعدی و نقشهٔ تراز هم‌زمان</p>
         </div>
       </div>
       <div class="top-actions">
@@ -74,37 +74,37 @@
             <output id="out-y0">-0.80</output>
           </label>
           <label class="field">
-            <span data-i18n="label_hc_mode">حالت تپه نوردی</span>
+            <span data-i18n="label_hc_mode">حالت تپه‌نوردی</span>
             <select id="select-hc-mode" class="select-input">
               <option value="random" data-i18n-opt="hc_mode_random"></option>
               <option value="neighbors" data-i18n-opt="hc_mode_neighbors"></option>
             </select>
           </label>
           <label class="field">
-            <span data-i18n="label_hc_steps">حداکثر گام HC</span>
+            <span data-i18n="label_hc_steps">حداکثر گام تپه‌نوردی (HC)</span>
             <input type="number" id="input-hc-steps" value="180" min="20" max="800" step="10" />
           </label>
           <label class="field">
-            <span data-i18n="label_hc_step">اندازهٔ گام HC</span>
+            <span data-i18n="label_hc_step">اندازهٔ گام تپه‌نوردی (HC)</span>
             <input type="number" id="input-hc-step" value="0.18" min="0.02" max="0.6" step="0.01" />
           </label>
           <label class="field">
-            <span data-i18n="label_rs_samples">نمونهٔ جستجوی تصادفی</span>
+            <span data-i18n="label_rs_samples">تعداد نمونهٔ جستجوی تصادفی (RS)</span>
             <input type="number" id="input-rs-n" value="220" min="30" max="1200" step="10" />
           </label>
           <label class="field">
-            <span data-i18n="label_anim_delay">تأخیر انیمیشن HC (ms)</span>
+            <span data-i18n="label_anim_delay">تأخیر انیمیشن تپه‌نوردی، میلی‌ثانیه</span>
             <input type="number" id="input-anim-delay" value="45" min="0" max="400" step="5" />
           </label>
           <label class="field checkbox-field">
             <input type="checkbox" id="chk-show-all-rs" checked />
-            <span data-i18n="label_show_all_rs">نمایش همهٔ نمونه‌های RS (شفاف)</span>
+            <span data-i18n="label_show_all_rs">نمایش همهٔ نمونه‌های جستجوی تصادفی (شفاف)</span>
           </label>
         </div>
 
         <div class="btn-row">
           <button type="button" id="btn-run" class="btn primary" data-i18n="btn_run">اجرای مقایسه</button>
-          <button type="button" id="btn-animate-hc" class="btn" data-i18n="btn_animate_hc">پخش مسیر HC</button>
+          <button type="button" id="btn-animate-hc" class="btn" data-i18n="btn_animate_hc">پخش تدریجی مسیر تپه‌نوردی</button>
           <button type="button" id="btn-stop" class="btn danger" data-i18n="btn_stop" style="display: none">توقف</button>
           <button type="button" id="btn-reset-view" class="btn" data-i18n="btn_reset_view">بازنشانی نما</button>
         </div>
@@ -112,23 +112,23 @@
 
         <div class="metrics-row">
           <div class="metric-tile hc">
-            <span class="label" data-i18n="metric_hc_final">بهترین HC (کمینه)</span>
+            <span class="label" data-i18n="metric_hc_final">بهترین مقدار تپه‌نوردی (HC)</span>
             <span class="value" id="metric-hc">—</span>
           </div>
           <div class="metric-tile rs">
-            <span class="label" data-i18n="metric_rs_best">بهترین RS</span>
+            <span class="label" data-i18n="metric_rs_best">بهترین مقدار جستجوی تصادفی (RS)</span>
             <span class="value" id="metric-rs">—</span>
           </div>
           <div class="metric-tile glob">
-            <span class="label" data-i18n="metric_global_ref">مرجع سراسری (تقریبی)</span>
+            <span class="label" data-i18n="metric_global_ref">مقدار در کمینهٔ سراسری (مرجع)</span>
             <span class="value" id="metric-global">—</span>
           </div>
         </div>
 
         <div class="legend-strip" id="legend-strip" aria-hidden="false">
           <span class="legend-item"><span class="legend-swatch surface"></span><span data-i18n="legend_surface">سطح f(x,y)</span></span>
-          <span class="legend-item"><span class="legend-swatch hc"></span><span data-i18n="legend_hc">مسیر تپه نوردی</span></span>
-          <span class="legend-item"><span class="legend-swatch rs"></span><span data-i18n="legend_rs">جستجوی تصادفی</span></span>
+          <span class="legend-item"><span class="legend-swatch hc"></span><span data-i18n="legend_hc">مسیر تپه‌نوردی</span></span>
+          <span class="legend-item"><span class="legend-swatch rs"></span><span data-i18n="legend_rs">نمونه‌های جستجوی تصادفی</span></span>
           <span class="legend-item"><span class="legend-swatch global"></span><span data-i18n="legend_global">کمینهٔ سراسری</span></span>
           <span class="legend-item"><span class="legend-swatch local"></span><span data-i18n="legend_local">کمینهٔ محلی (نمونه)</span></span>
         </div>
@@ -165,7 +165,7 @@
     </main>
 
     <footer class="site-footer">
-      <span data-i18n="footer">تهیه‌شده توسط محمد خالوئی</span>
+      <span data-i18n="footer">تهیه‌شده توسط محمد خالوئی · khalooei@aut.ac.ir · mohammad.khalooei@sharif.edu</span>
     </footer>
   </div>
 
